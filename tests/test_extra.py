@@ -108,6 +108,11 @@ def test_exceptions():
     with pytest.raises(Exception) as excinfo:
         p2.get()
 
+    p3 = Promise.resolve('a').then(throws)
+    with pytest.raises(AssertionError) as assert_exc:
+        p3.get()
+    assert hasattr(assert_exc.value, '__traceback__')
+
 
 def test_fake_promise():
     p = Promise()
@@ -510,3 +515,12 @@ def test_promisify_promise_subclass():
     m_p = MyPromise.promisify(p)
     assert isinstance(m_p, MyPromise)
     assert m_p.get() == p.get()
+
+
+def test_get_after_get_in_promise():
+    def do(x):
+        v = Promise.resolve("ok").then(lambda _: _).get()  # the wait inside get waits forever
+        return v
+
+    p = Promise.resolve(None).then(do)
+    assert p.get() == "ok"

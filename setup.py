@@ -1,8 +1,16 @@
 from setuptools import setup
 
+
+def build_version():
+    try:
+        with open('BUILD_VERSION') as f:
+            return f.read().strip()
+    except IOError:
+        return '0'
+
 setup(
     name='promise',
-    version='1.0.1',
+    version='1.0.2a'+build_version(),
     description='Promises/A+ implementation for Python',
     long_description=open('README.rst').read(),
     url='https://github.com/syrusakbary/promise',
@@ -27,7 +35,7 @@ setup(
     keywords='concurrent future deferred promise',
     packages=["promise"],
     install_requires=[
-        'typing',
+        'typing', 'six'
     ],
     tests_require=['pytest>=2.7.3', 'futures'],
 )
