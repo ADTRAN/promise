@@ -1,3 +1,10 @@
+# ADTRAN Note
+This is a fork of a well respected project with changes only to bubble out stacktraces from thrown exceptions in the 
+v1.0.x release branch. The remainder of the readme is included from the original source
+
+## Installation
+    $ pip install git+https://www.github.com/ADTRAN/promise@1.0.2
+
 # Promise
 
 This is a implementation of Promises in Python.

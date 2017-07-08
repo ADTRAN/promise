@@ -1,21 +1,13 @@
 from setuptools import setup
 
-
-def build_version():
-    try:
-        with open('promise/BUILD_VERSION') as f:
-            return f.read().strip()
-    except IOError:
-        return '0.dev0'
-
 setup(
-    name='promise',
-    version='1.0.2b'+build_version(),
+    name='promise-adtn',
+    version='1.0.2',
     description='Promises/A+ implementation for Python',
     long_description=open('README.rst').read(),
-    url='https://github.com/syrusakbary/promise',
-    download_url='https://github.com/syrusakbary/promise/releases',
-    author='Syrus Akbary',
+    url='https://github.com/ADTRAN/promise',
+    download_url='https://github.com/ADTRAN/promise/releases',
+    author='Syrus Akbary, ADTRAN',
     author_email='me@syrusakbary.com',
     license='MIT',
     classifiers=[
@@ -34,7 +26,6 @@ setup(
 
     keywords='concurrent future deferred promise',
     packages=["promise"],
-    package_data={"promise": ["BUILD_VERSION"]},
     install_requires=[
         'typing', 'six'
     ],
