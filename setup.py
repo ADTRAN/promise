@@ -3,14 +3,14 @@ from setuptools import setup
 
 def build_version():
     try:
-        with open('BUILD_VERSION') as f:
+        with open('promise/BUILD_VERSION') as f:
             return f.read().strip()
     except IOError:
-        return '0'
+        return '0.dev0'
 
 setup(
     name='promise',
-    version='1.0.2a'+build_version(),
+    version='1.0.2b'+build_version(),
     description='Promises/A+ implementation for Python',
     long_description=open('README.rst').read(),
     url='https://github.com/syrusakbary/promise',
@@ -34,6 +34,7 @@ setup(
 
     keywords='concurrent future deferred promise',
     packages=["promise"],
+    package_data={"promise": ["BUILD_VERSION"]},
     install_requires=[
         'typing', 'six'
     ],
